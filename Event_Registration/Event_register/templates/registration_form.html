@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function confirmRegistration() {
+            var confirmed = confirm("Are you sure you want to register?");
+            return confirmed;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Event Registration Form</h2>
+        <form action="{% url 'register' %}" method="post" onsubmit="return confirmRegistration()">
+            {% csrf_token %}
+            <label for="full_name">Full Name:</label><br>
+            <input type="text" id="full_name" name="full_name" required><br>
+
+            <label for="email">Email Address:</label><br>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="phone">Phone Number:</label><br>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]+" required><br>
+
+            <label for="event_sessions">Event Sessions:</label><br>
+            <select id="event_sessions" name="event_sessions" required>
+                <option value="">Select Event Session</option>
+                <option value="Marriage">Marriage</option>
+                <option value="Engagement<">Engagement</option>
+                <option value="Reception">Reception</option>
+            </select><br>
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>
